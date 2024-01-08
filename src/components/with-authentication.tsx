@@ -12,8 +12,6 @@ export default function WithAuthentication({
   const { status } = useSession();
   const router = useRouter();
 
-  console.log(status);
-
   useEffect(() => {
     if (status === "unauthenticated") router.push("/auth-choice");
   }, [router, status]);
