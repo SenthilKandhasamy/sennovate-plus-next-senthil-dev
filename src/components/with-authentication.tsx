@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
+import FullPageSkeleton from "./common/full-page-skeleton";
 
 export default function WithAuthentication({
   children,
@@ -19,4 +20,6 @@ export default function WithAuthentication({
   if (status === "authenticated") {
     return <>{children}</>;
   }
+
+  return <FullPageSkeleton />;
 }

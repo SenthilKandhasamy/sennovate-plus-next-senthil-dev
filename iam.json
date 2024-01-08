@@ -1,0 +1,32 @@
+{
+  "featureTitleLabel": "IAM Solutions",
+  "plans": [
+    {
+      "label": "Essentials",
+      "key": "E"
+    },
+    {
+      "label": "Advance",
+      "key": "A"
+    }
+  ],
+  "featuresCollections": [
+    {
+      "name": "Directory & MFA",
+      "features": [
+        {
+          "name": "Cloud Directory",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Protect Authenticator App",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Multi-factor Authentication",
+          "includesInPlan": ["E", "A"]
+        }
+      ]
+    }
+  ]
+}
