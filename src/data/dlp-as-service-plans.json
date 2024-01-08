@@ -1,0 +1,134 @@
+{
+  "featureTitleLabel": "Features",
+  "plans": [
+    {
+      "label": "Essentials",
+      "key": "E"
+    },
+    {
+      "label": "Advance",
+      "key": "A"
+    }
+  ],
+  "featuresCollections": [
+    {
+      "name": "DLP Platform (Trellix)",
+      "features": [
+        {
+          "name": "Content fingerprinting",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "ML and AI powered classification",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Data discovery and mapping",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Data registration",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Prevention policies",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Encryption",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "DLP workflows",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Granular controls",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Compliance and reporting",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Endpoint discover scan",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Unique tagging",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Centralized monitoring",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Role based access control",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Device-to-cloud DLP",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "User education",
+          "includesInPlan": ["E", "A"]
+        }
+      ]
+    },
+    {
+      "name": "Managed Service",
+      "features": [
+        {
+          "name": "Platform set-up",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": " 24x7x365 alert monitoring",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Incident Analysis & Response",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Proactive tuning",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Monthly status  reports",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Monthly security posture review meetings",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Compliance management advisory",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "24x7x365 Support",
+          "includesInPlan": ["E:9am-5pm", "A"]
+        },
+        {
+          "name": "Project Management",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Security Advisory",
+          "includesInPlan": ["A"]
+        }
+      ]
+    },
+    {
+      "name": "Pricing",
+      "features": [
+        {
+          "name": "DLP solution + managed service",
+          "includesInPlan": ["E:$xx/user/month", "A:$xx/user/month"]
+        }
+      ]
+    }
+  ]
+}

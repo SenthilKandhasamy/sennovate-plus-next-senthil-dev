@@ -1,0 +1,118 @@
+{
+  "featureTitleLabel": "OS Administration",
+  "plans": [
+    {
+      "label": "Essentials",
+      "key": "E"
+    },
+    {
+      "label": "Advance",
+      "key": "A"
+    }
+  ],
+  "featuresCollections": [
+    {
+      "name": "Services",
+      "features": [
+        {
+          "name": "Installation Services",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Configuration management",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Patch management and maintenance",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Log monitoring, Resource monitoring  and reporting",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Scripting & Automation",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Security Audit & Compliance",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Server  Hardening - ports/service accounts/Services",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Performance & Tuning",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Backup & Restore",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Disaster Recovery & Incident Response",
+          "includesInPlan": ["A"]
+        }
+      ]
+    },
+    {
+      "name": "Process",
+      "features": [
+        {
+          "name": "Incident management",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Service request management",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Change management",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "RCA and problem management",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Status report",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Support documentation",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Yearly DR readiness assessment",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "24x7x365 Infrastructure Engineering Support",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Project Management",
+          "includesInPlan": ["E", "A"]
+        },
+        {
+          "name": "Infrastructure  Architecture Review",
+          "includesInPlan": ["A"]
+        },
+        {
+          "name": "Audit advisory",
+          "includesInPlan": ["A"]
+        }
+      ]
+    },
+    {
+      "name": "Pricing",
+      "features": [
+        {
+          "name": "OS Administration  as a Service (Linux and Windows)",
+          "includesInPlan": ["E:$xx/server/month", "A:$xx/server/month"]
+        }
+      ]
+    }
+  ]
+}
