@@ -27,7 +27,7 @@ export default function ServiceCard({
         <p className="text-sm">{description}</p>
       </CardBody>
       <CardFooter>
-        <Button as={Link} fullWidth color="secondary" href={pricingPage}>
+        <Button as={Link} fullWidth color="primary" href={pricingPage}>
           See Pricing
         </Button>
       </CardFooter>

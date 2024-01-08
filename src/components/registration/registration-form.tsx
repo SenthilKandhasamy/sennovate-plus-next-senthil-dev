@@ -12,7 +12,7 @@ export const RegistrationForm = () => {
   });
 
   return (
-    <div className="container max-w-screen-md mt-20">
+    <div className="container mt-20 max-w-[480px]">
       <Card>
         <CardHeader className="justify-center">
           <h1 className="text-xl text-center">Registration</h1>
@@ -76,7 +76,9 @@ export const RegistrationForm = () => {
                 {formState.errors._form}
               </div>
             )}
-            <FormButton fullWidth>Register</FormButton>
+            <FormButton fullWidth color="primary">
+              Register
+            </FormButton>
           </form>
         </CardBody>
       </Card>
