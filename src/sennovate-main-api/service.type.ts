@@ -22,5 +22,6 @@ export type ServiceTable = {
 export type Service = {
   title: string;
   slug: string;
+  excerpt: string;
   tables: ServiceTable[];
 };

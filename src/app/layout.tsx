@@ -33,7 +33,7 @@ export default function RootLayout({
             <HeaderAuth />
           </Navbar>
 
-          <div className="container max-w-screen-lg">{children}</div>
+          <div className="container max-w-screen-lg mb-20">{children}</div>
         </Provider>
       </body>
     </html>

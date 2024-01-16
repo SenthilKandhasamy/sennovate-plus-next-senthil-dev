@@ -28,7 +28,7 @@ export default function ServiceCard({
       </CardBody>
       <CardFooter>
         <Button as={Link} fullWidth color="primary" href={pricingPage}>
-          See Pricing
+          Learn More
         </Button>
       </CardFooter>
     </Card>
