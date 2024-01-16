@@ -13,14 +13,16 @@ export default function Home() {
             <ServiceCard
               name="IAM"
               description="The ensuing table delineates the framework for Identity and Access Management as a Service (IAMaaS), crafted in accordance with prevalent use cases catering to the majority of clients."
-              pricingPage={paths.service("iam")}
+              pricingPage={paths.service("iam-as-a-service")}
             />
           </ServiceCategory>
           <ServiceCategory name="Security Operations as a Service (Open XDR and EDR)">
             <ServiceCard
               name="SOC as a Service powered by Open XDR"
               description="Sennovate's SOC as a Service leverages the cutting-edge Open XDR platform powered with AI/ML, complemented by Sennovate+'s innovative service delivery. This integration provides a comprehensive 360-degree security insight into your entire enterprise, addressing the needs of both technical teams and executive leadership, thereby ensuring a peace of mind."
-              pricingPage={paths.service("soc-xdr")}
+              pricingPage={paths.service(
+                "soc-as-a-service-powered-by-open-xdr"
+              )}
             />
             <ServiceCard
               name="MDR as a Service powered by EDR"
