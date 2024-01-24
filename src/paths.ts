@@ -5,4 +5,8 @@ export const paths = {
   service(name: string) {
     return `/services/${name}`;
   },
+
+  partnerShipApplication() {
+    return `admin/partnership-application`;
+  },
 };

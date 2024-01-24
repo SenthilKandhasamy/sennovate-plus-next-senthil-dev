@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className="dark text-foreground bg-background">
       <body className={inter.className}>
         <Provider>
-          <Navbar className="bg-gray-950" shouldHideOnScroll>
+          <Navbar className="bg-gray-800" shouldHideOnScroll maxWidth="xl">
             <NavbarBrand>
               <Link className="font-bold text-2xl" href="/">
                 <Image src={Logo} alt="Sennovate plus Logo" />
@@ -33,7 +35,8 @@ export default function RootLayout({
             <HeaderAuth />
           </Navbar>
 
-          <div className="container max-w-screen-lg mb-20">{children}</div>
+          <div className="container max-w-screen-xl mb-20">{children}</div>
+          <ToastContainer theme="dark" />
         </Provider>
       </body>
     </html>

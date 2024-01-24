@@ -3,7 +3,7 @@
 import { Button, ButtonProps } from "@nextui-org/react";
 import { useFormStatus } from "react-dom";
 
-export default function FormButton(props: ButtonProps) {
+export default function FormSubmitButton(props: ButtonProps) {
   const { pending } = useFormStatus();
 
   return (

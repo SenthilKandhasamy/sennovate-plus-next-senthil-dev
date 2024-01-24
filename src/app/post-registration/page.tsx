@@ -1,5 +1,5 @@
 import * as actions from "@/actions";
-import FormButton from "@/components/common/form-button";
+import FormSubmitButton from "@/components/common/form-submit-button";
 import { Divider } from "@nextui-org/react";
 
 export default function PostRegistration() {
@@ -12,9 +12,9 @@ export default function PostRegistration() {
       <Divider className="my-4" />
       <form action={actions.login}>
         <input type="text" hidden name="redirectTo" value="/" readOnly />
-        <FormButton size="lg" color="primary">
+        <FormSubmitButton size="lg" color="primary">
           Login
-        </FormButton>
+        </FormSubmitButton>
       </form>
     </div>
   );

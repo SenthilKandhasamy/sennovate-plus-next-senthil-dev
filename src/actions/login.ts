@@ -3,12 +3,19 @@
 import { signIn } from "@/auth";
 
 export async function login(formData: FormData) {
-  let redirectTo;
-  if (formData.get("redirectTo")) {
-    redirectTo = String(formData.get("redirectTo"));
-  }
-
   return signIn("cognito", {
-    redirectTo,
+    redirectTo: "/",
   });
+}
+
+export async function loginWithSennovate(formData: FormData) {
+  return signIn(
+    "cognito",
+    {
+      redirectTo: "/",
+    },
+    {
+      idp_identifier: process.env.COGNITO_SENNOVATE_IDP_IDENTIFIER || "",
+    }
+  );
 }
