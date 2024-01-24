@@ -7,7 +7,7 @@ declare module "next-auth" {
     name?: string | null;
     email?: string | null;
     image?: string | null;
-    groups?: string[] | null;
+    roles: string[];
   }
   export interface Session {
     user: User;
@@ -28,11 +28,30 @@ const authOptions: NextAuthConfig = {
       clientId,
       clientSecret,
       issuer,
-      profile(profile) {
+      async profile(profile) {
+        const isEmployee =
+          profile.identities?.providerName ===
+          process.env.COGNITO_SENNOVATE_IDP_NAME;
+        const roles = JSON.parse(profile["custom:roles"] || "[]");
+
+        if (isEmployee) roles.push("employee");
+        if (roles.includes("Sennovate_Plus_Admin")) roles.push("admin");
+        if (!isEmployee) {
+          roles.push("partner");
+          const partner = await db.user.findFirst({
+            where: {
+              companyEmail: profile.email,
+            },
+          });
+          if (partner) {
+            roles.push(partner.partnershipType.toLocaleLowerCase());
+          }
+        }
+
         return {
           id: profile.sub,
           email: profile.email,
-          groups: ["admin"],
+          roles,
         };
       },
       checks: ["nonce"] as any,
@@ -40,11 +59,11 @@ const authOptions: NextAuthConfig = {
   ],
   callbacks: {
     jwt({ token, user }) {
-      if (user) token.groups = user.groups;
+      if (user) token.roles = user.roles;
       return token;
     },
     session({ session, token }) {
-      session.user.groups = token.groups as any;
+      session.user.roles = token.roles as any;
       return session;
     },
   },

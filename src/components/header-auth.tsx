@@ -1,4 +1,5 @@
 "use client";
+import * as actions from "@/actions";
 import {
   Dropdown,
   DropdownItem,
@@ -8,12 +9,12 @@ import {
   NavbarItem,
   User,
 } from "@nextui-org/react";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function HeaderAuth() {
   const { status, data } = useSession();
-  const isAdmin = data?.user.groups?.includes("admin") as any;
+  const isAdmin = data?.user.roles.includes("admin") as any;
 
   if (status === "loading") return null;
   if (status === "authenticated")
@@ -37,8 +38,8 @@ export default function HeaderAuth() {
               <DropdownItem
                 key="logout"
                 color="danger"
-                onClick={() => {
-                  signOut();
+                onPress={async () => {
+                  await actions.logout();
                 }}
               >
                 Log Out

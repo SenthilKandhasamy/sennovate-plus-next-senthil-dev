@@ -15,7 +15,7 @@ export async function loginWithSennovate(formData: FormData) {
       redirectTo: "/",
     },
     {
-      idp_identifier: process.env.COGNITO_SENNOVATE_IDP_IDENTIFIER || "",
+      identity_provider: process.env.COGNITO_SENNOVATE_IDP_NAME || "",
     }
   );
 }
