@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
+import { db } from "./db";
 
 declare module "next-auth" {
   export interface User {
