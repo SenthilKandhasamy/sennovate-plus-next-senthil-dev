@@ -1,6 +1,6 @@
 import ServiceOfferingTable from "@/components/services/service-offering-table";
+import ServicePricing from "@/components/services/service-pricing";
 import { getService } from "@/sennovate-main-api";
-import { Button } from "@nextui-org/react";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -14,13 +14,16 @@ export default async function Service({ params: { slug } }: Props) {
   if (!service) notFound();
 
   return (
-    <div className="mt-10">
-      <h1 className="text-5xl font-bold">{service.title}</h1>
+    <div className="my-20 space-y-10">
+      <div className="max-w-prose text-center mx-auto">
+        <h1 className="text-3xl font-bold mb-2">{service.title}</h1>
+        <p className="opacity-85">{service.excerpt}</p>
+      </div>
 
-      <div className="my-12">
+      <div className="max-w-screen-md mx-auto">
         {service.tables.map((table) => {
           return (
-            <div key={table.heading} className="space-y-4">
+            <div key={table.heading} className="space-y-5">
               {table.offerings.map((offering) => (
                 <ServiceOfferingTable
                   key={offering.heading}
@@ -32,11 +35,9 @@ export default async function Service({ params: { slug } }: Props) {
         })}
       </div>
 
-      <div>
-        <h2 className="text-2xl mb-2">Professional Services on-Demand</h2>
-        <Button color="primary" size="lg">
-          Call Us
-        </Button>
+      <div className="max-w-screen-md mx-auto">
+        <h2 className="text-2xl mb-4 font-bold">Pricing</h2>
+        <ServicePricing service={service} />
       </div>
     </div>
   );

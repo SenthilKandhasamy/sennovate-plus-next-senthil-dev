@@ -1,5 +1,6 @@
 "use client";
 import * as actions from "@/actions";
+import { getUserType } from "@/user-type";
 import {
   Dropdown,
   DropdownItem,
@@ -9,12 +10,14 @@ import {
   NavbarItem,
   User,
 } from "@nextui-org/react";
+import capitalize from "lodash/capitalize";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function HeaderAuth() {
   const { status, data } = useSession();
-  const isAdmin = data?.user.roles.includes("admin") as any;
+  const userType = getUserType(data?.user.roles);
+  const isAdmin: any = userType === "admin";
 
   if (status === "loading") return null;
   if (status === "authenticated")
@@ -25,8 +28,8 @@ export default function HeaderAuth() {
             <DropdownTrigger>
               <User
                 as="button"
-                description={data?.user?.email}
-                name={data?.user?.name}
+                description={capitalize(userType)}
+                name={data.user.email}
               />
             </DropdownTrigger>
             <DropdownMenu aria-label="User Actions" variant="flat">

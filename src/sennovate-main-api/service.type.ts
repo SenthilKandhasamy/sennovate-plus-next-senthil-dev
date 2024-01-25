@@ -18,10 +18,20 @@ export type ServiceTable = {
   subHeading?: string;
   offerings: ServiceOffering[];
 };
+export type Pricing = {
+  name: string;
+  description: string;
+  amount: string;
+  suffix: string;
+  for: "reseller" | "referral";
+  active: boolean;
+  plan: string;
+};
 
 export type Service = {
   title: string;
   slug: string;
   excerpt: string;
   tables: ServiceTable[];
+  pricing?: Pricing[];
 };

@@ -35,6 +35,10 @@ const authOptions: NextAuthConfig = {
           process.env.COGNITO_SENNOVATE_IDP_NAME;
         const roles = JSON.parse(profile["custom:roles"] || "[]");
 
+        // // REMOVE: TODO
+        // roles.push("admin");
+        // // REMOVE: TODO
+
         if (isEmployee) roles.push("employee");
         if (roles.includes("Sennovate_Plus_Admin")) roles.push("admin");
         if (!isEmployee) {

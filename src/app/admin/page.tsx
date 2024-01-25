@@ -4,7 +4,7 @@ export default async function Admin() {
   return (
     <div className="my-20">
       <Button as={Link} href="/admin/partnership-application">
-        Partnership Applications
+        Partnership Requests
       </Button>
     </div>
   );

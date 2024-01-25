@@ -23,6 +23,8 @@ model User {
   partnershipType   PartnershipType
   remark            String?
   applicationStatus PartnershipApplicationStatus @default(Submitted)
+  approvedServices  ApprovedService[]
+  createdAt         DateTime                     @default(now())
 }
 
 enum PartnershipType {
@@ -35,4 +37,12 @@ enum PartnershipApplicationStatus {
   UnderProcess
   Approved
   Rejected
+}
+
+model ApprovedService {
+  id          Int    @id @default(autoincrement())
+  partner     User   @relation(fields: [partnerId], references: [id])
+  partnerId   String
+  serviceSlug String
+  priceFactor Float?
 }

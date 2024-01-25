@@ -19,6 +19,9 @@ export default async function PartnerShipApplications({
   const users = await db.user.findMany({
     take,
     skip,
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   const totalUser = await db.user.count();
@@ -50,7 +53,7 @@ export default async function PartnerShipApplications({
 
   return (
     <div className="my-20">
-      <h1 className="text-3xl">Partnership Applications</h1>
+      <h1 className="text-3xl">Partnership Requests</h1>
       <Divider className="my-4" />
       <UserTable
         columns={columns}
