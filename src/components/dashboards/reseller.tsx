@@ -1,3 +1,5 @@
+import PartnerCommon from "./partner-common";
+
 export default function ResellerDashboard() {
-  return <div>ResellerDashboard</div>;
+  return <PartnerCommon type="Reseller" />;
 }

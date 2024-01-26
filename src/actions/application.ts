@@ -1,45 +1,41 @@
 "use server";
+import * as aws from "@/aws";
 import { db } from "@/db";
+import { paths } from "@/paths";
+import { redirect } from "next/navigation";
 
-export async function approveApplication(userId: string) {
-  let errMsg;
+export async function approveApplication(formData: FormData) {
+  // console.log(formData.get("priceFactor"));
+
+  const userId = formData.get("userId") as string;
+  const serviceSlugs = formData.getAll("approvedServices") as any[];
 
   try {
-    const user = await db.user.findFirst({
+    const user = await db.user.update({
       where: {
         id: userId,
       },
-    });
-
-    if (!user) {
-      errMsg = "User not Found";
-    }
-
-    if (user?.applicationStatus === "Approved") {
-      errMsg = "Already Approved";
-    }
-
-    // TODO
-    // Create the user in cognito
-    console.log("Updating Cognito");
-
-    // Update the user Application status
-    await db.user.update({
-      where: { id: user?.id },
       data: {
         applicationStatus: "Approved",
+        approvedServices: {
+          createMany: {
+            data: serviceSlugs.map((s) => ({
+              serviceSlug: s,
+            })),
+            skipDuplicates: true,
+          },
+        },
       },
     });
-  } catch (err) {
-    if (err instanceof Error) {
-      errMsg = err.message;
-    }
+
+    await aws.adminCreateUser({
+      email: user.companyEmail,
+    });
+  } catch (error) {
+    console.log(error);
   }
 
-  if (errMsg)
-    return {
-      _form: [errMsg],
-    };
+  redirect(`${paths.partnerShipApplication()}/${userId}`);
 }
 
 export async function rejectApplication(userId: string) {

@@ -7,6 +7,6 @@ export const paths = {
   },
 
   partnerShipApplication() {
-    return `admin/partnership-application`;
+    return `/admin/partnership-application`;
   },
 };

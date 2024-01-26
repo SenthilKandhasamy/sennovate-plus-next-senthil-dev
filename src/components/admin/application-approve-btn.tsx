@@ -1,21 +1,24 @@
 "use client";
 
-import * as actions from "@/actions";
 import {
   Button,
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import ModalAsyncButton from "../common/modal-async-button";
+import { ReactNode } from "react";
 
-export default function ApplicationApproveBtn({ user }: { user: User }) {
+export default function ApplicationApproveBtn({
+  user,
+  children,
+}: {
+  user: User;
+  children: ReactNode;
+}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
@@ -24,33 +27,19 @@ export default function ApplicationApproveBtn({ user }: { user: User }) {
       <Button color="success" onPress={onOpen}>
         Approve
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        backdrop="blur"
+        closeButton
+      >
         <ModalContent>
-          {(onClose) => (
+          {() => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 Approve Application
               </ModalHeader>
-              <ModalBody>
-                <p>Are you sure you want to Approve this application</p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <ModalAsyncButton
-                  color="success"
-                  serverAction={actions.approveApplication.bind(null, user.id)}
-                  onSuccess={() => {
-                    toast("Approved", {
-                      type: "success",
-                    });
-                    router.refresh();
-                  }}
-                >
-                  Approve
-                </ModalAsyncButton>
-              </ModalFooter>
+              <ModalBody>{children}</ModalBody>
             </>
           )}
         </ModalContent>
