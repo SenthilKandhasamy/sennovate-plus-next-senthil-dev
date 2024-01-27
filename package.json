@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build:dev": "prisma generate && next build",
+    "build:prod": "prisma generate && prisma migrate deploy && next build",
+    "build": "[[ $VERCEL_ENV == production ]] && npm run build:prod || npm run build:dev",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
