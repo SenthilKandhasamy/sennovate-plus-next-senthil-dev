@@ -11,8 +11,8 @@ interface Service {
 interface Props {
   availableServices: Service[];
   approvedServices: Service[];
-  approve: (services: Service[]) => Promise<void | { error: string[] }>;
-  revert: (services: Service[]) => Promise<void | { error: string[] }>;
+  approve: (slugs: string[]) => Promise<void | { error: string }>;
+  revert: (slugs: string[]) => Promise<void | { error: string }>;
 }
 
 export default function ServiceApprovalTransfer({
@@ -24,16 +24,11 @@ export default function ServiceApprovalTransfer({
   const [approving, setApproving] = useState(false);
   const [reverting, setReverting] = useState(false);
   const [selectedAvailableServices, setSelectedAvailableServices] = useState(
-    new Set<Service>()
+    new Set<string>()
   );
   const [selectedApprovedServices, setSelectedApprovedServices] = useState(
-    new Set<Service>()
+    new Set<string>()
   );
-
-  const [state, setState] = useState({
-    availableServices: new Set(availableServices),
-    approvedServices: new Set(approvedServices),
-  });
 
   function handleApprove() {
     setApproving(true);
@@ -46,7 +41,7 @@ export default function ServiceApprovalTransfer({
 
   function handleRevert() {
     setReverting(true);
-    approve(Array.from(selectedApprovedServices))
+    revert(Array.from(selectedApprovedServices))
       .then()
       .finally(() => {
         setReverting(false);
@@ -64,7 +59,7 @@ export default function ServiceApprovalTransfer({
             selectedKeys={selectedAvailableServices as any}
             onSelectionChange={setSelectedAvailableServices as any}
           >
-            {Array.from(state.availableServices).map((s) => (
+            {availableServices.map((s) => (
               <ListboxItem key={s.key}>{s.label}</ListboxItem>
             ))}
           </Listbox>
@@ -94,7 +89,7 @@ export default function ServiceApprovalTransfer({
             selectedKeys={selectedApprovedServices as any}
             onSelectionChange={setSelectedApprovedServices as any}
           >
-            {Array.from(state.approvedServices).map((s) => (
+            {approvedServices.map((s) => (
               <ListboxItem key={s.key}>{s.label}</ListboxItem>
             ))}
           </Listbox>

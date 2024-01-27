@@ -1,17 +1,13 @@
-import NextAuth, { NextAuthConfig } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import NextAuth, { NextAuthConfig, User } from "next-auth";
 import CognitoProvider from "next-auth/providers/cognito";
 import { db } from "./db";
 
 declare module "next-auth" {
-  export interface User {
-    id: string;
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-    roles: string[];
-  }
   export interface Session {
-    user: User;
+    user: User & {
+      roles: string[];
+    };
   }
 }
 
@@ -24,34 +20,19 @@ if (!clientId || !clientSecret || !issuer) {
 }
 
 const authOptions: NextAuthConfig = {
+  adapter: PrismaAdapter(db),
   providers: [
     CognitoProvider({
       clientId,
       clientSecret,
       issuer,
       async profile(profile) {
+        const roles = JSON.parse(profile["custom:roles"] || "[]");
         const isEmployee =
           profile.identities?.providerName ===
           process.env.COGNITO_SENNOVATE_IDP_NAME;
-        const roles = JSON.parse(profile["custom:roles"] || "[]");
-
-        // // REMOVE: TODO
-        // roles.push("admin");
-        // // REMOVE: TODO
-
         if (isEmployee) roles.push("employee");
         if (roles.includes("Sennovate_Plus_Admin")) roles.push("admin");
-        if (!isEmployee) {
-          roles.push("partner");
-          const partner = await db.user.findFirst({
-            where: {
-              companyEmail: profile.email,
-            },
-          });
-          if (partner) {
-            roles.push(partner.partnershipType.toLocaleLowerCase());
-          }
-        }
 
         return {
           id: profile.sub,
@@ -63,12 +44,8 @@ const authOptions: NextAuthConfig = {
     }),
   ],
   callbacks: {
-    jwt({ token, user }) {
-      if (user) token.roles = user.roles;
-      return token;
-    },
-    session({ session, token }) {
-      session.user.roles = token.roles as any;
+    session({ session, user }) {
+      session.user.roles = (user as any).roles;
       return session;
     },
   },

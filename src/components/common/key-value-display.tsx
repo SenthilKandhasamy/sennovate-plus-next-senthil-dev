@@ -2,7 +2,7 @@ interface Props {
   heading: string;
   pairs: {
     key?: string | null;
-    value?: string | null;
+    value?: string | null | React.ReactNode;
   }[];
 }
 

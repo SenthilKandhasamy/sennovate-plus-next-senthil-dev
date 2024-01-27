@@ -10,21 +10,97 @@ datasource prisma {
   url      = env("DATABASE_URL")
 }
 
+// AuthJs Starts
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @prisma.Text
+  access_token      String? @prisma.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @prisma.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model User {
-  id                String                       @id @default(cuid())
-  companyEmail      String                       @unique()
-  companyName       String
-  jobTitle          String
-  country           String?
-  state             String?
-  firstName         String
-  lastName          String
-  phone             String?
-  partnershipType   PartnershipType
-  remark            String?
-  applicationStatus PartnershipApplicationStatus @default(Submitted)
-  approvedServices  ApprovedService[]
-  createdAt         DateTime                     @default(now())
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  roles         String[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// AuthJs End
+
+model Partner {
+  id        String            @id @default(cuid())
+  name      String            @unique
+  country   String
+  website   String?
+  state     String?
+  domain    String?
+  employees PartnerEmployee[]
+}
+
+model PartnerEmployee {
+  id        String              @id @default(cuid())
+  companyId String
+  company   Partner             @relation(fields: [companyId], references: [id])
+  name      String
+  email     String
+  jobTitle  String
+  phone     String?
+  request   PartnershipRequest?
+}
+
+model PartnershipRequest {
+  id                      String                   @id @default(cuid())
+  partnerEmployeeId       String                   @unique
+  partnerEmployee         PartnerEmployee          @relation(fields: [partnerEmployeeId], references: [id])
+  status                  PartnershipRequestStatus @default(Submitted)
+  requestedFor            PartnershipType
+  remark                  String?
+  createdAt               DateTime                 @default(now())
+  approvedServices        ApprovedService[]
+  ndaSigned               Boolean                  @default(false)
+  msaSigned               Boolean                  @default(false)
+  resellerAgreementSigned Boolean                  @default(false)
+  comments                Comment[]
+}
+
+enum PartnershipRequestStatus {
+  Submitted
+  UnderProcess
+  Approved
+  Rejected
 }
 
 enum PartnershipType {
@@ -32,17 +108,18 @@ enum PartnershipType {
   Reseller
 }
 
-enum PartnershipApplicationStatus {
-  Submitted
-  UnderProcess
-  Approved
-  Rejected
+model ApprovedService {
+  id        Int                @id @default(autoincrement())
+  slug      String
+  requestId String
+  request   PartnershipRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
 }
 
-model ApprovedService {
-  id          Int    @id @default(autoincrement())
-  partner     User   @relation(fields: [partnerId], references: [id])
-  partnerId   String
-  serviceSlug String
-  priceFactor Float?
+model Comment {
+  id                   Int                 @id @default(autoincrement())
+  userIdentifier       String
+  content              String              @prisma.Text
+  createdAt            DateTime            @default(now())
+  partnershipRequestId String?
+  partnershipRequest   PartnershipRequest? @relation(fields: [partnershipRequestId], references: [id], onDelete: Cascade)
 }

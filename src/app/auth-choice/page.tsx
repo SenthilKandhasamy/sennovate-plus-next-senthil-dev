@@ -10,12 +10,12 @@ export default function AuthChoice() {
         <div className="space-y-2 w-60">
           <Button
             as={Link}
-            href="/registration"
+            href="/partner-registration"
             color="primary"
             fullWidth
             className="mb-10"
           >
-            Become a Partner
+            Request for Partnership
           </Button>
           <form action={actions.login}>
             <FormSubmitButton

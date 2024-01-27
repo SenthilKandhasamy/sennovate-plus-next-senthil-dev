@@ -6,7 +6,10 @@ export const paths = {
     return `/services/${name}`;
   },
 
-  partnerShipApplication() {
-    return `/admin/partnership-application`;
+  partnershipRequest(id?: string) {
+    let path = "/admin/partnership-request";
+    if (id) path += `/${id}`;
+
+    return path;
   },
 };
