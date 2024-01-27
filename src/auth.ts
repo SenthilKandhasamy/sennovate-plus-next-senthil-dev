@@ -46,6 +46,7 @@ const authOptions: NextAuthConfig = {
   callbacks: {
     session({ session, user }) {
       session.user.roles = (user as any).roles;
+      session.user.id = user.id;
       return session;
     },
   },

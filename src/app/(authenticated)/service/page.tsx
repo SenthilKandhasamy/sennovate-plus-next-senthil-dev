@@ -6,7 +6,7 @@ import { getUserType } from "@/user-type";
 import { Divider } from "@nextui-org/react";
 
 export default async function ApprovedServices() {
-  const allServices = await sennovateMain.getService();
+  let allServices = await sennovateMain.getService();
   const session = await getServerSession();
   if (!session) return null;
   const isAdmin = getUserType(session.user.roles) === "admin";
