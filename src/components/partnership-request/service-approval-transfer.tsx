@@ -30,11 +30,17 @@ export default function ServiceApprovalTransfer({
     new Set<string>()
   );
 
+  function reset() {
+    setSelectedAvailableServices(new Set<string>());
+    setSelectedApprovedServices(new Set<string>());
+  }
+
   function handleApprove() {
     setApproving(true);
     approve(Array.from(selectedAvailableServices))
       .then()
       .finally(() => {
+        reset();
         setApproving(false);
       });
   }
@@ -44,6 +50,7 @@ export default function ServiceApprovalTransfer({
     revert(Array.from(selectedApprovedServices))
       .then()
       .finally(() => {
+        reset();
         setReverting(false);
       });
   }

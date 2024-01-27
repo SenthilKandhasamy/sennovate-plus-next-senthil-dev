@@ -1,5 +1,9 @@
 import KeyValueDisplay from "@/components/common/key-value-display";
 import SimpleSkeleton from "@/components/common/simple-skeleton";
+import PartnershipRequestApproveSection from "@/components/partnership-request/approve-section";
+import PartnershipRequestComments from "@/components/partnership-request/comments";
+import PartnershipRequestDocs from "@/components/partnership-request/documentation";
+import PartnershipRequestRejectSection from "@/components/partnership-request/reject-section";
 import ServiceApproval from "@/components/partnership-request/service-approval";
 import PartnershipRequestStatus from "@/components/partnership-request/status";
 import { db } from "@/db";
@@ -77,6 +81,28 @@ export default async function SinglePartnershipApplication({
             requestId={request.id}
           />
         </Suspense>
+      </section>
+
+      <Divider />
+      <section>
+        <h2 className="text-2xl mb-4">Documentations</h2>
+        <PartnershipRequestDocs request={request} />
+      </section>
+
+      <Divider />
+      <section>
+        <h2 className="text-2xl mb-4">Comments</h2>
+        <PartnershipRequestComments />
+      </section>
+
+      <section className="border-1 border-success-100 p-8 rounded-lg">
+        <h2 className="text-2xl mb-4 text-success-300">Approve Request</h2>
+        <PartnershipRequestApproveSection request={request} />
+      </section>
+
+      <section className="border-1 border-danger-100 p-8 rounded-lg">
+        <h2 className="text-2xl mb-4 text-danger-300">Reject Request</h2>
+        <PartnershipRequestRejectSection request={request} />
       </section>
     </div>
   );

@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" className="dark text-foreground bg-background">
       <body className={inter.className}>
         <Provider>
-          <Navbar className="bg-gray-800" shouldHideOnScroll maxWidth="xl">
+          <Navbar className="bg-default-50" shouldHideOnScroll maxWidth="xl">
             <NavbarBrand>
               <Link className="font-bold text-2xl" href="/">
                 <Image src={Logo} alt="Sennovate plus Logo" />
