@@ -59,15 +59,19 @@ export default async function PartnershipRequests({ searchParams }: PageProps) {
   }));
 
   return (
-    <div className="my-20">
-      <h1 className="text-3xl">Partnership Requests</h1>
+    <div className="my-20 space-y-10">
+      <section>
+        <h1 className="text-2xl font-bold text-center">Partnership Requests</h1>
+      </section>
       <Divider className="my-4" />
-      <PartnershipRequestTable
-        columns={columns}
-        rows={rows}
-        total={count}
-        perPage={take}
-      />
+      <section>
+        <PartnershipRequestTable
+          columns={columns}
+          rows={rows}
+          total={count}
+          perPage={take}
+        />
+      </section>
     </div>
   );
 }

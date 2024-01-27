@@ -1,15 +1,15 @@
 "use client";
 
+import FullPageSkeleton from "@/components/common/full-page-skeleton";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect } from "react";
-import FullPageSkeleton from "./common/full-page-skeleton";
+import { useEffect } from "react";
 
-export default function WithAuthentication({
-  children,
-}: {
-  children: ReactNode;
-}) {
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function AuthenticatedRoute({ children }: Props) {
   const { status } = useSession();
   const router = useRouter();
 

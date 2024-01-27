@@ -2,8 +2,15 @@ export const paths = {
   home() {
     return "/";
   },
-  service(name: string) {
-    return `/services/${name}`;
+
+  admin() {
+    return "/admin";
+  },
+
+  service(name?: string) {
+    let path = "/service";
+    if (name) path += `/${name}`;
+    return path;
   },
 
   partnershipRequest(id?: string) {

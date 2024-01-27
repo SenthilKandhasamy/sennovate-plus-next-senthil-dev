@@ -68,7 +68,7 @@ export default function PartnershipRequestTable({
       <TableHeader columns={columns}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
-      <TableBody items={rows}>
+      <TableBody items={rows} emptyContent="No Request yet">
         {(item) => (
           <TableRow key={item.key}>
             {(columnKey) => (

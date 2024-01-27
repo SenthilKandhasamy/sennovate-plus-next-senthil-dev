@@ -21,14 +21,14 @@ export default function ServiceCard({
   return (
     <Card>
       <CardHeader>
-        <h1 className="font-bold">{name}</h1>
+        <h1 className="font-bold text-lg">{name}</h1>
       </CardHeader>
       <CardBody>
-        <p className="text-sm">{description}</p>
+        <p className="text-sm opacity-80">{description}</p>
       </CardBody>
       <CardFooter>
         <Button as={Link} fullWidth color="primary" href={pricingPage}>
-          Learn More
+          Details
         </Button>
       </CardFooter>
     </Card>

@@ -14,14 +14,7 @@ export default async function ServicePricing({ service }: Props) {
     return <div className="opacity-60">Price Not Found</div>;
 
   switch (getUserType(session?.user.roles)) {
-    case "referral":
-      return (
-        <PriceGrid
-          prices={service.pricing.filter((p) => p.for === "referral")}
-        />
-      );
-
-    case "reseller":
+    case "user":
       return (
         <PriceGrid
           prices={service.pricing.filter((p) => p.for === "reseller")}
@@ -30,15 +23,15 @@ export default async function ServicePricing({ service }: Props) {
 
     case "admin":
       return (
-        <div className="space-y-4">
+        <div className="space-y-8">
           <div>
-            <h2 className="text-lg mb-2">Pricing for Reseller</h2>
+            <h2 className="mb-2 opacity-80">Pricing for Reseller</h2>
             <PriceGrid
               prices={service.pricing.filter((p) => p.for === "reseller")}
             />
           </div>
           <div>
-            <h2 className="text-lg mb-2">Pricing for Referral</h2>
+            <h2 className="mb-2 opacity-80">Pricing for Referral</h2>
             <PriceGrid
               prices={service.pricing.filter((p) => p.for === "referral")}
             />

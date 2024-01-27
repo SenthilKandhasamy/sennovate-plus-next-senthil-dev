@@ -34,7 +34,13 @@ export default function PartnershipRequestApproveSection({
             isLoading={loading}
             onPress={() => {
               setLoading(true);
-              approvePartnershipRequest({}, request.id)
+              approvePartnershipRequest(
+                {},
+                {
+                  employeeId: request.partnerEmployeeId,
+                  requestId: request.id,
+                }
+              )
                 .then((d) => {
                   if (d.error)
                     toast(d.error, {
