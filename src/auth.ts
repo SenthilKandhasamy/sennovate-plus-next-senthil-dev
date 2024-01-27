@@ -23,6 +23,7 @@ const authOptions: NextAuthConfig = {
   adapter: PrismaAdapter(db),
   providers: [
     CognitoProvider({
+      allowDangerousEmailAccountLinking: true,
       clientId,
       clientSecret,
       issuer,

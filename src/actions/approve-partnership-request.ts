@@ -16,7 +16,7 @@ export async function approvePartnershipRequest(
   }
 ) {
   try {
-    const partnerEmployee = await db.partnerEmployee.findFirst({
+    const partnerEmployee = await db.user.findFirst({
       where: { id: employeeId },
     });
 

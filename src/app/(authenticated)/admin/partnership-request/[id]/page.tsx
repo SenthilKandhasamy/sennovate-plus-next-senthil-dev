@@ -33,7 +33,7 @@ export default async function SinglePartnershipApplication({
 
   if (!request) return notFound();
   const person = request.partnerEmployee;
-  const company = request.partnerEmployee.company;
+  const company = request.partnerEmployee.company!;
 
   return (
     <div className="my-20 space-y-10">
@@ -65,6 +65,7 @@ export default async function SinglePartnershipApplication({
               { key: "Job Title", value: person.jobTitle },
               { key: "Email", value: person.email },
               { key: "Phone", value: person.phone },
+              { key: "Remark", value: request.remark },
             ]}
           />
         </div>

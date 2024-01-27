@@ -40,14 +40,19 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  roles         String[]
-  accounts      Account[]
-  sessions      Session[]
+  id                 String              @id @default(cuid())
+  name               String?
+  email              String              @unique
+  emailVerified      DateTime?
+  image              String?
+  roles              String[]
+  accounts           Account[]
+  sessions           Session[]
+  companyId          String?
+  company            Partner?            @relation(fields: [companyId], references: [id])
+  jobTitle           String?
+  phone              String?
+  partnershipRequest PartnershipRequest?
 }
 
 model VerificationToken {
@@ -61,30 +66,19 @@ model VerificationToken {
 // AuthJs End
 
 model Partner {
-  id        String            @id @default(cuid())
-  name      String            @unique
+  id        String  @id @default(cuid())
+  name      String  @unique
   country   String
   website   String?
   state     String?
   domain    String?
-  employees PartnerEmployee[]
-}
-
-model PartnerEmployee {
-  id        String              @id @default(cuid())
-  companyId String
-  company   Partner             @relation(fields: [companyId], references: [id])
-  name      String
-  email     String
-  jobTitle  String
-  phone     String?
-  request   PartnershipRequest?
+  employees User[]
 }
 
 model PartnershipRequest {
   id                      String                   @id @default(cuid())
   partnerEmployeeId       String                   @unique
-  partnerEmployee         PartnerEmployee          @relation(fields: [partnerEmployeeId], references: [id])
+  partnerEmployee         User                     @relation(fields: [partnerEmployeeId], references: [id], onDelete: Cascade)
   status                  PartnershipRequestStatus @default(Submitted)
   requestedFor            PartnershipType
   remark                  String?

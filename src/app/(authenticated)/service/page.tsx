@@ -1,5 +1,6 @@
 import { getServerSession } from "@/auth";
 import ServiceCard from "@/components/services/servie-card";
+import { db } from "@/db";
 import { paths } from "@/paths";
 import * as sennovateMain from "@/sennovate-main-api";
 import { getUserType } from "@/user-type";
@@ -10,6 +11,23 @@ export default async function ApprovedServices() {
   const session = await getServerSession();
   if (!session) return null;
   const isAdmin = getUserType(session.user.roles) === "admin";
+
+  if (!isAdmin) {
+    const partnershipRequest = await db.partnershipRequest.findFirst({
+      where: {
+        partnerEmployeeId: session.user.id,
+      },
+      select: {
+        approvedServices: true,
+      },
+    });
+
+    allServices = allServices.filter((s) =>
+      partnershipRequest?.approvedServices.find(
+        (approvedS) => approvedS.slug === s.slug
+      )
+    );
+  }
 
   return (
     <div className="my-20 space-y-10">

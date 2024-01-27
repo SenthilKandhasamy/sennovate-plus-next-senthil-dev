@@ -47,11 +47,13 @@ export async function createPartnershipRequest(
     await db.partnershipRequest.create({
       data: {
         requestedFor: "Reseller",
+        remark: result.data.remark,
         partnerEmployee: {
           create: {
             email: result.data.employeeEmail,
             jobTitle: result.data.employeeJobTitle,
             name: result.data.employeeName,
+            phone: result.data.employeePhone,
             company: {
               connectOrCreate: {
                 create: {

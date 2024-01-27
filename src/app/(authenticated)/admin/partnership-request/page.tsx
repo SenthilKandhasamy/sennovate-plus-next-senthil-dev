@@ -38,7 +38,7 @@ export default async function PartnershipRequests({ searchParams }: PageProps) {
         },
       },
     }),
-    db.user.count(),
+    db.partnershipRequest.count(),
   ]);
 
   const columns = [
@@ -54,8 +54,8 @@ export default async function PartnershipRequests({ searchParams }: PageProps) {
     requestedFor: request.requestedFor,
     status: <PartnershipRequestStatus status={request.status} />,
     name: request.partnerEmployee.name,
-    company: request.partnerEmployee.company.name,
-    country: request.partnerEmployee.company.country,
+    company: request.partnerEmployee.company?.name,
+    country: request.partnerEmployee.company?.country,
   }));
 
   return (
