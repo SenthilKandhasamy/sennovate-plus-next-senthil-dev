@@ -28,12 +28,24 @@ const authOptions: NextAuthConfig = {
       clientSecret,
       issuer,
       async profile(profile) {
-        const roles = JSON.parse(profile["custom:roles"] || "[]");
-        const isEmployee =
-          profile.identities?.providerName ===
-          process.env.COGNITO_SENNOVATE_IDP_NAME;
-        if (isEmployee) roles.push("employee");
-        if (roles.includes("Sennovate_Plus_Admin")) roles.push("admin");
+        const incomingRoles = JSON.parse(profile["custom:roles"] || "[]");
+        const roles = [];
+
+        // Check for employee
+        if (Array.isArray(profile.identities)) {
+          const isEmployee =
+            profile.identities[0]?.providerName ===
+            process.env.COGNITO_SENNOVATE_IDP_NAME;
+          if (isEmployee) roles.push("employee");
+        }
+
+        // Check For Admin
+        if (incomingRoles.includes("Sennovate_Plus_Admin")) roles.push("admin");
+
+        await db.user.update({
+          where: { email: profile.email },
+          data: { roles },
+        });
 
         return {
           id: profile.sub,
