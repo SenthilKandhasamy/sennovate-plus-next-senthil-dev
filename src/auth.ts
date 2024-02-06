@@ -42,10 +42,14 @@ const authOptions: NextAuthConfig = {
         // Check For Admin
         if (incomingRoles.includes("Sennovate_Plus_Admin")) roles.push("admin");
 
-        await db.user.update({
-          where: { email: profile.email },
-          data: { roles },
-        });
+        try {
+          await db.user.update({
+            where: { email: profile.email },
+            data: { roles },
+          });
+        } catch (error) {
+          console.log(error);
+        }
 
         return {
           id: profile.sub,
