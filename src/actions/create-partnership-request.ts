@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/db";
+import { isDatabaseUniqueConstraintError } from "@/error";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -10,7 +11,13 @@ const formSchema = z.object({
   employeeName: z.string(),
   employeeJobTitle: z.string(),
   employeeEmail: z.string(),
-  employeePhone: z.string().optional(),
+  employeePhone: z
+    .string()
+    .regex(
+      /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
+      "Please enter a valid phone number"
+    )
+    .optional(),
   remark: z.string().optional(),
 });
 
@@ -71,6 +78,14 @@ export async function createPartnershipRequest(
       },
     });
   } catch (error) {
+    if (isDatabaseUniqueConstraintError(error, "email")) {
+      return {
+        errors: {
+          _form: ["Email is in use"],
+        },
+      };
+    }
+
     console.log(error);
     return {
       errors: {

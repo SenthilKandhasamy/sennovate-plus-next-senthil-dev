@@ -1,6 +1,8 @@
+import BreadCrumbs from "@/components/breadcrumbs";
 import PartnershipRequestStatus from "@/components/partnership-request/status";
 import PartnershipRequestTable from "@/components/partnership-request/table";
 import { db } from "@/db";
+import { paths } from "@/paths";
 import { Divider } from "@nextui-org/react";
 
 interface PageProps {
@@ -60,6 +62,15 @@ export default async function PartnershipRequests({ searchParams }: PageProps) {
 
   return (
     <div className="my-20 space-y-10">
+      <section>
+        <BreadCrumbs
+          items={[
+            { label: "Admin", href: paths.admin() },
+            { label: "All Partnership Request" },
+          ]}
+        />
+      </section>
+
       <section>
         <h1 className="text-2xl font-bold text-center">Partnership Requests</h1>
       </section>

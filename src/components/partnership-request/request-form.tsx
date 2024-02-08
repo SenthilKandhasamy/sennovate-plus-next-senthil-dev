@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  Autocomplete,
+  AutocompleteItem,
   Card,
   CardBody,
   CardHeader,
@@ -14,9 +16,16 @@ import {
   FormType,
 } from "@/actions/create-partnership-request";
 import FormSubmitButton from "@/components/common/form-submit-button";
+import { Country } from "country-state-city";
 import { useFormState } from "react-dom";
 
 const attrName = (key: keyof FormType) => key;
+const countries = Country.getAllCountries().map((c) => ({
+  isoCode: c.isoCode,
+  label: c.name,
+  value: c.name,
+  flag: c.flag,
+}));
 
 export const PartnershipRequestForm = () => {
   const [formState, action] = useFormState(createPartnershipRequest, {
@@ -39,13 +48,23 @@ export const PartnershipRequestForm = () => {
               isInvalid={!!formState.errors.companyName}
               errorMessage={formState.errors.companyName}
             />
-            <Input
+            <Autocomplete
               name="companyCountry"
-              label="Country"
-              isRequired
               isInvalid={!!formState.errors.companyCountry}
               errorMessage={formState.errors.companyCountry}
-            />
+              defaultItems={countries}
+              label="Select Country"
+              isRequired
+            >
+              {(country) => (
+                <AutocompleteItem
+                  key={country.value}
+                  startContent={<span>{country.flag}</span>}
+                >
+                  {country.label}
+                </AutocompleteItem>
+              )}
+            </Autocomplete>
             <Input
               name="companyState"
               label="State"

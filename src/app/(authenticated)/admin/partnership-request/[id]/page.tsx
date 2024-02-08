@@ -1,3 +1,4 @@
+import BreadCrumbs from "@/components/breadcrumbs";
 import KeyValueDisplay from "@/components/common/key-value-display";
 import SimpleSkeleton from "@/components/common/simple-skeleton";
 import PartnershipRequestApproveSection from "@/components/partnership-request/approve-section";
@@ -7,6 +8,7 @@ import PartnershipRequestRejectSection from "@/components/partnership-request/re
 import ServiceApproval from "@/components/partnership-request/service-approval";
 import PartnershipRequestStatus from "@/components/partnership-request/status";
 import { db } from "@/db";
+import { paths } from "@/paths";
 import { Divider } from "@nextui-org/react";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -37,6 +39,22 @@ export default async function SinglePartnershipApplication({
 
   return (
     <div className="my-20 space-y-10">
+      <section>
+        <BreadCrumbs
+          items={[
+            { label: "Admin", href: paths.admin() },
+            {
+              label: "All Partnership Request",
+              href: paths.partnershipRequest(),
+            },
+            {
+              label: `${company.name}'s request`,
+              href: paths.partnershipRequest(),
+            },
+          ]}
+        />
+      </section>
+
       <section>
         <PartnershipRequestStatus status={request.status} />
         <h1 className="text-3xl font-bold mt-2">
