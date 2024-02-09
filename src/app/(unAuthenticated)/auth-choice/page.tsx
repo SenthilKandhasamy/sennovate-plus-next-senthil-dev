@@ -15,7 +15,7 @@ export default function AuthChoice() {
             fullWidth
             className="mb-10"
           >
-            Request for Partnership
+            Partnership Request
           </Button>
           <form action={actions.login}>
             <FormSubmitButton
