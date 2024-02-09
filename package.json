@@ -8,7 +8,8 @@
     "build:prod": "prisma generate && prisma migrate deploy && next build",
     "build": "[[ $VERCEL_ENV == production ]] && npm run build:prod || npm run build:dev",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma-studio:production": "dotenv -e .env.prod pnpx prisma studio"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
