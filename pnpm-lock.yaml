@@ -9,7 +9,7 @@ dependencies:
     specifier: ^1.0.17
     version: 1.0.17(@prisma/client@5.8.1)
   '@aws-sdk/client-cognito-identity-provider':
-    specifier: ^3.485.0
+    specifier: ^3.496.0
     version: 3.496.0
   '@nextui-org/react':
     specifier: ^2.2.9

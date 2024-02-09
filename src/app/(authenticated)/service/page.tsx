@@ -11,8 +11,9 @@ export default async function ApprovedServices() {
   const session = await getServerSession();
   if (!session) return null;
   const isAdmin = getUserType(session.user.roles) === "admin";
+  const isDirectSales = getUserType(session.user.roles) === "direct-sales";
 
-  if (!isAdmin) {
+  if (!isAdmin && !isDirectSales) {
     const partnershipRequest = await db.partnershipRequest.findFirst({
       where: {
         partnerEmployeeId: session.user.id,
@@ -31,7 +32,7 @@ export default async function ApprovedServices() {
 
   return (
     <div className="my-20 space-y-10">
-      {!isAdmin && (
+      {!isAdmin && !isDirectSales && (
         <>
           <h1 className="font-bold text-3xl">Approved Services</h1>
           <Divider className="mt-4 mb-12" />

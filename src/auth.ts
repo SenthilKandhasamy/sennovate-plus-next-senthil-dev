@@ -42,6 +42,10 @@ const authOptions: NextAuthConfig = {
         // Check For Admin
         if (incomingRoles.includes("Sennovate_Plus_Admin")) roles.push("admin");
 
+        // Check For Direct Sales
+        if (incomingRoles.includes("Sennovate_Plus_Direct_Sales"))
+          roles.push("direct-sales");
+
         try {
           await db.user.update({
             where: { email: profile.email },
