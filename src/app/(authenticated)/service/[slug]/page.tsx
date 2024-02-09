@@ -42,7 +42,7 @@ export default async function Service({ params: { slug } }: Props) {
           <Divider />
           <section className="container max-w-screen-md">
             <h1 className="text-2xl font-bold mb-4">Preferred</h1>
-            <div className="grid md:grid-cols-4">
+            <div className="grid md:grid-cols-4 gap-5">
               {service.preferredLogos.map((l) => (
                 <div
                   key={l.title}
