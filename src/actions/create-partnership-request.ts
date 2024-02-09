@@ -16,8 +16,7 @@ const formSchema = z.object({
     .regex(
       /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
       "Please enter a valid phone number"
-    )
-    .optional(),
+    ),
   remark: z.string().optional(),
 });
 

@@ -24,7 +24,7 @@ export default function AuthChoice() {
               variant="bordered"
               color="primary"
             >
-              Login
+              Partner Login
             </FormSubmitButton>
           </form>
           <form action={actions.loginWithSennovate}>

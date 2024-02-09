@@ -40,7 +40,7 @@ export const PartnershipRequestForm = () => {
         </CardHeader>
         <CardBody>
           <form action={action} className="space-y-4">
-            <h2>Company Related Information</h2>
+            <h2>Please fill in your company information below</h2>
             <Input
               name="companyName"
               label="Company Name"
@@ -98,12 +98,13 @@ export const PartnershipRequestForm = () => {
             <Input
               name="employeePhone"
               label="Contact Number"
+              isRequired
               isInvalid={!!formState.errors.employeePhone}
               errorMessage={formState.errors.employeePhone}
             />
             <Textarea
               name={attrName("remark")}
-              label="Remarks"
+              label="Additional Info/Remarks"
               isInvalid={!!formState.errors.remark}
               errorMessage={formState.errors.remark}
             />
@@ -113,7 +114,7 @@ export const PartnershipRequestForm = () => {
               </div>
             )}
             <FormSubmitButton fullWidth color="primary">
-              Raise Request
+              Submit
             </FormSubmitButton>
           </form>
         </CardBody>
