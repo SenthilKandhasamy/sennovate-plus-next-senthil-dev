@@ -27,32 +27,31 @@ export default function PartnershipRequestRejectSection({
       });
   }
 
-  switch (request.status) {
-    case "Approved":
-      return <div className="opacity-70">Already Approved</div>;
-    case "Rejected":
-      return <div className="opacity-70">Already Rejected</div>;
+  if (request.status === "Rejected" || request.status === "Approved")
+    return null;
 
-    default:
-      return (
-        <div className="flex flex-col gap-4 items-start">
-          <Checkbox
-            checked={checked}
-            onValueChange={setCheck}
-            className="opacity-70"
-          >
-            Proceed with Request Rejection
-          </Checkbox>
-          <Button
-            color="danger"
-            size="lg"
-            isDisabled={!checked}
-            isLoading={loading}
-            onClick={handlePress}
-          >
-            Reject
-          </Button>
-        </div>
-      );
-  }
+  return (
+    <section className="border-1 border-danger-100 p-8 rounded-lg">
+      <h2 className="text-2xl mb-4 text-danger-300">Reject Request</h2>
+
+      <div className="flex flex-col gap-4 items-start">
+        <Checkbox
+          checked={checked}
+          onValueChange={setCheck}
+          className="opacity-70"
+        >
+          Proceed with Request Rejection
+        </Checkbox>
+        <Button
+          color="danger"
+          size="lg"
+          isDisabled={!checked}
+          isLoading={loading}
+          onClick={handlePress}
+        >
+          Reject
+        </Button>
+      </div>
+    </section>
+  );
 }

@@ -2,8 +2,8 @@ import BreadCrumbs from "@/components/breadcrumbs";
 import KeyValueDisplay from "@/components/common/key-value-display";
 import SimpleSkeleton from "@/components/common/simple-skeleton";
 import PartnershipRequestApproveSection from "@/components/partnership-request/approve-section";
-import PartnershipRequestComments from "@/components/partnership-request/comments";
 import PartnershipRequestDocs from "@/components/partnership-request/documentation";
+import PartnershipRequestRejectRevertSection from "@/components/partnership-request/reject-revert-section";
 import PartnershipRequestRejectSection from "@/components/partnership-request/reject-section";
 import ServiceApproval from "@/components/partnership-request/service-approval";
 import PartnershipRequestStatus from "@/components/partnership-request/status";
@@ -88,41 +88,25 @@ export default async function SinglePartnershipApplication({
           />
         </div>
       </section>
-      <Divider />
-      <section>
-        <h2 className="text-2xl mb-1">Service Approval</h2>
-        <p className="opacity-70 mb-8">
-          This will be effective once the request is approved
-        </p>
-        <Suspense fallback={<SimpleSkeleton />}>
-          <ServiceApproval
-            approvedServices={request.approvedServices}
-            requestId={request.id}
-          />
-        </Suspense>
-      </section>
 
-      <Divider />
-      <section>
-        <h2 className="text-2xl mb-4">Documentations</h2>
-        <PartnershipRequestDocs request={request} />
-      </section>
+      <Suspense fallback={<SimpleSkeleton />}>
+        <ServiceApproval
+          approvedServices={request.approvedServices}
+          request={request}
+        />
+      </Suspense>
 
-      <Divider />
+      <PartnershipRequestDocs request={request} />
+
+      {/* <Divider />
       <section>
         <h2 className="text-2xl mb-4">Comments</h2>
         <PartnershipRequestComments />
-      </section>
+      </section> */}
 
-      <section className="border-1 border-success-100 p-8 rounded-lg">
-        <h2 className="text-2xl mb-4 text-success-300">Approve Request</h2>
-        <PartnershipRequestApproveSection request={request} />
-      </section>
-
-      <section className="border-1 border-danger-100 p-8 rounded-lg">
-        <h2 className="text-2xl mb-4 text-danger-300">Reject Request</h2>
-        <PartnershipRequestRejectSection request={request} />
-      </section>
+      <PartnershipRequestApproveSection request={request} />
+      <PartnershipRequestRejectSection request={request} />
+      <PartnershipRequestRejectRevertSection request={request} />
     </div>
   );
 }
