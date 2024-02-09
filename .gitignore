@@ -43,5 +43,5 @@ next-env.d.ts
 cdk.out
 
 # CDK Env
-aws-resources/env.ts
+aws-resources/env.json
 
