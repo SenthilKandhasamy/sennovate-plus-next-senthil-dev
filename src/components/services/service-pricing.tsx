@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function ServicePricing({ service, userType }: Props) {
-  if (!service.pricing || service.pricing.length < 1)
+  if (!service.priceTables || service.priceTables.length < 1)
     return <div className="opacity-60">Price Not Found</div>;
 
   switch (userType) {
