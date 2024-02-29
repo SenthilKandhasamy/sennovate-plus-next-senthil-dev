@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Infrastructure
+- **Hosting** : Vercel
+- **Production Database**: Amazon RDS (us-east-1)
+- **Development Database**: Amazon RDS (ap-south-1)
+- **Production Userpool**: AWS Cognito Userpool (us-east-1)
+- **Development Userpool**: AWS Cognito Userpool (app-south-1)
+
+## Environment Variables required
+- AUTH_SECRET=""
+- NEXTAUTH_URL=""
+- COGNITO_USER_POOL_ID=""
+- COGNITO_CLIENT_ID=""
+- COGNITO_CLIENT_SECRET=""
+- COGNITO_ISSUER=""
+- COGNITO_REGION=""
+- COGNITO_SENNOVATE_IDP_NAME=""
+- COGNITO_HOSTED_UI_DOMAIN=""
+- COGNITO_LOGOUT_URI=""
+- AWS_ACCESS_KEY_ID=""
+- AWS_SECRET_ACCESS_KEY=""
+- SENNOVATE_MAIN_WEBSITE_URL=""
+- DATABASE_URL="postgresql://postgres:...."
+
+
+
