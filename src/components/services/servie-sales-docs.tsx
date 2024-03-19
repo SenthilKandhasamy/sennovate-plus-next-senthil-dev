@@ -25,7 +25,6 @@ export default function ServiceSalesDocs({ service, userType }: Props) {
             </ul>
           </div>
           <div>
-            <h2 className="mb-2 opacity-80">Sales Docs for Direct Sales</h2>
             <ul className="list-inside list-disc">
               {service.salesDocs
                 .filter((s) => s.for === "directSales")
