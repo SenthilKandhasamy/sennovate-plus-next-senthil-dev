@@ -13,7 +13,7 @@ export default function ServiceSalesDocs({ service, userType }: Props) {
       return (
         <div className="space-y-4">
           <div>
-            <h2 className="mb-2 opacity-80">Common Sales Docs</h2>
+            <!-- <h2 className="mb-2 opacity-80">Common Sales Docs.</h2> -->
             <ul className="list-inside list-disc">
               {service.salesDocs
                 .filter((s) => s.for === "all")
