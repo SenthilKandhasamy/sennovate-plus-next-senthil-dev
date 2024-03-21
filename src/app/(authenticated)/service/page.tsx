@@ -50,5 +50,6 @@ export default async function ApprovedServices() {
         ))}
       </div>
     </div>
+    <h1 className="font-bold text-3xl">Common Documents</h1>
   );
 }
