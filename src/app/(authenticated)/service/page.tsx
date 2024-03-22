@@ -5,9 +5,12 @@ import { paths } from "@/paths";
 import * as sennovateMain from "@/sennovate-main-api";
 import { getUserType } from "@/user-type";
 import { Divider } from "@nextui-org/react";
+import Link from "next/link";
 
 export default async function ApprovedServices() {
   let allServices = await sennovateMain.getService();
+  let servicefalse = await sennovateMain.getServicefalse();
+  
   const session = await getServerSession();
   if (!session) return null;
   const isAdmin = getUserType(session.user.roles) === "admin";
@@ -34,7 +37,7 @@ export default async function ApprovedServices() {
     <div className="my-20 space-y-10">
       {!isAdmin && !isDirectSales && (
         <>
-          <h1 className="font-bold text-3xl">Approved Services</h1>
+          <h1 className="font-bold text-3xl">Approved Services </h1>
           <Divider className="mt-4 mb-12" />
         </>
       )}
@@ -49,7 +52,16 @@ export default async function ApprovedServices() {
           />
         ))}
       </div>
+	    <h1 className="font-bold text-3xl">Common Documents</h1>
+	    <ul className="list-inside list-disc">
+		    {servicefalse[0].salesDocs.map((doc) => (
+              <Link key={doc.title} href={doc.media} target="_blank">
+                <li className="text-primary-500 text-lg">{doc.title}</li>
+              </Link>
+            ))}
+                 
+            </ul>
     </div>
-    <h1 className="font-bold text-3xl">Common Documents</h1>
+	
   );
 }
