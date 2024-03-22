@@ -71,3 +71,10 @@ export type Service = {
     table: WordpressACFTable;
   }[];
 };
+export type Servicefalse = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  flag : boolean;
+  salesDocs: SalesDoc[];
+};
