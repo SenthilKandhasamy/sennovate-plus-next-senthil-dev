@@ -52,7 +52,7 @@ export default async function ApprovedServices() {
           />
         ))}
       </div>
-	    <h1 className="font-bold text-3xl">Common Documents</h1>
+	    <h1 className="font-bold text-3xl">Documents</h1>
 	    <ul className="list-inside list-disc">
 		    {servicefalse[0].salesDocs.map((doc) => (
               <Link key={doc.title} href={doc.media} target="_blank">
