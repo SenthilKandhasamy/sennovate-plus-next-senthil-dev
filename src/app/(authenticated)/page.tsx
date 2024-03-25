@@ -13,4 +13,4 @@ export default async function Home() {
     default:
       return redirect(paths.service());
   }
-}
+} 

@@ -15,6 +15,7 @@ const clientId = process.env.COGNITO_CLIENT_ID;
 const clientSecret = process.env.COGNITO_CLIENT_SECRET;
 const issuer = process.env.COGNITO_ISSUER;
 
+
 if (!clientId || !clientSecret || !issuer) {
   throw new Error("Cognito Credentials are not set");
 }
