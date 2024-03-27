@@ -37,7 +37,7 @@ export default async function ApprovedServices() {
     <div className="my-20 space-y-10">
       {!isAdmin && !isDirectSales && (
         <>
-          <h1 className="font-bold text-3xl">Approved Services </h1>
+          <h1 className="font-bold text-3xl">IAM Approved Services </h1>
           <Divider className="mt-4 mb-12" />
         </>
       )}
