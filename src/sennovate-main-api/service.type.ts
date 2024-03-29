@@ -59,6 +59,7 @@ export type ByoLogo = {
 
 export type Service = {
   title: string;
+  grouping: string;
   slug: string;
   excerpt: string;
   tables: ServiceTable[];
