@@ -42,16 +42,34 @@ export default async function ApprovedServices() {
         </>
       )}
 
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {allServices.map((service) => (
-          <ServiceCard
-            key={service.slug}
-            name={service.title}
-            description={service.excerpt}
-            pricingPage={paths.service(service.slug)}
-          />
-        ))}
-      </div>
+<div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+  {/* Looping over the array of unique groupings */}
+  {groupings.map((group, index) => (
+  <div key={index}>
+      {allServices.filter((service) => service.grouping === group).length > 0 && (
+        <>
+          <h2 className="font-bold text-xl">{group}</h2>
+          {/* Mapping over filtered services to render ServiceCard components */}
+          {allServices.filter((service) => service.grouping === group).map((filteredService) => (
+            <ServiceCard
+              key={filteredService.slug}
+              name={filteredService.title}
+              description={filteredService.excerpt}
+              pricingPage={paths.service(filteredService.slug)}
+            />
+          ))}
+        </>
+      )}
+      {/* Check if it's not the last group before adding line breaks */}
+      {index !== groupings.length - 1 && (
+        <>
+          <div />
+          <div />		 
+        </>
+      )}
+    </div>
+  ))}
+</div>
 	    <h1 className="font-bold text-3xl">Documents</h1>
 	    <ul className="list-inside list-disc">
 		    {servicefalse[0].salesDocs.map((doc) => (
