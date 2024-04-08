@@ -94,14 +94,24 @@ const groupings = [...new Set(allServices.map(service => service.grouping))];
 	    
 	    <Divider className="mt-4 mb-12" />
 	    <h1 className="font-bold text-3xl">Documents</h1>
-	    <ul className="list-inside list-disc">
-		    {servicefalse[0].salesDocs.map((doc) => (
-              <Link key={doc.title} href={doc.media} target="_blank">
-                <li className="text-primary-500 text-lg">{doc.title}</li>
-              </Link>
-            ))}
-                 
-            </ul>
+	<ul className="list-inside list-disc">
+      {servicefalse[0].salesDocs
+        .filter((doc) => {
+          if (doc.for === "reseller" && userType === "direct-sales") {
+            return true;
+          } else if (doc.for === "directSales" && userType === "direct-sales") {
+            return true;
+          } else if (doc.for === "all") {
+            return true;
+          }
+          return false;
+        })
+        .map((doc) => (
+          <Link key={doc.title} href={doc.media} target="_blank">
+            <li className="text-primary-500 text-lg">{doc.title}</li>
+          </Link>
+        ))}
+    </ul>
     </div>
 	
   );
