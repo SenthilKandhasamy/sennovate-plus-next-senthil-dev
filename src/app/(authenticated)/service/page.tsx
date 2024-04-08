@@ -15,6 +15,7 @@ export default async function ApprovedServices() {
   if (!session) return null;
   const isAdmin = getUserType(session.user.roles) === "admin";
   const isDirectSales = getUserType(session.user.roles) === "direct-sales";
+  const isEmployee = getUserType(session.user.roles) === "employee";
 
   if (!isAdmin && !isDirectSales) {
     const partnershipRequest = await db.partnershipRequest.findFirst({
