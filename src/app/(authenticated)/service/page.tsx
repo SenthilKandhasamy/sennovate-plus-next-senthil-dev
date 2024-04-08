@@ -74,38 +74,31 @@ const groupings = [...new Set(allServices.map(service => service.grouping))];
     </div>
   ))}
 </div>
-// Assuming getUserType and session are defined properly
-// Also assuming servicefalse is defined properly
+const DocumentList = ({ servicefalse, session }) => {
+  // Assuming getUserType and session are defined properly
+  const userType = getUserType(session.user.roles);
+  let filteredDocs;
 
-const userType = getUserType(session.user.roles);
-let filteredDocs;
+  if (userType === "admin") {
+    filteredDocs = servicefalse[0].salesDocs;
+  } else if (userType === "direct-sales") {
+    filteredDocs = servicefalse[0].salesDocs.filter((doc) => doc.for === "Reseller");
+  } else {
+    filteredDocs = servicefalse[0].salesDocs.filter((doc) => doc.for === "Direct Sales");
+  }
 
-if (userType === "admin") {
-  filteredDocs = servicefalse[0].salesDocs;
-} else if (userType === "direct-sales") {
-  filteredDocs = servicefalse[0].salesDocs.filter(doc => doc.for === "Reseller");
-} else {
-  filteredDocs = servicefalse[0].salesDocs.filter(doc => doc.for === "Direct Sales");
-}
-
-const DocumentList = () => (
-  <div>
-    <h1 className="font-bold text-3xl">Documents</h1>
-    <ul className="list-inside list-disc">
-      {filteredDocs.map(doc => (
-        <li key={doc.title}>
-          <Link href={doc.media} target="_blank" className="text-primary-500 text-lg">
-            {doc.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
-export default DocumentList;
-    </div>
-	  </div>
-	
+  return (
+    <div>
+      <h1 className="font-bold text-3xl">Documents</h1>
+      <ul className="list-inside list-disc">
+        {filteredDocs.map((doc) => (
+          <li key={doc.title}>
+            <Link href={doc.media} target="_blank" className="text-primary-500 text-lg">
+              {doc.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>	
   );
 }
