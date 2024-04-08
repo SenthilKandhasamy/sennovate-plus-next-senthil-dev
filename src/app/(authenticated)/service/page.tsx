@@ -105,6 +105,7 @@ const DocumentList = () => (
 
 export default DocumentList;
     </div>
+	  </div>
 	
   );
 }
