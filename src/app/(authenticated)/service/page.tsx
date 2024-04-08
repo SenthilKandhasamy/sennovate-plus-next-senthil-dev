@@ -76,11 +76,28 @@ const groupings = [...new Set(allServices.map(service => service.grouping))];
 </div>
 	    <h1 className="font-bold text-3xl">Documents</h1>
 	    <ul className="list-inside list-disc">
-		    {servicefalse[0].salesDocs.map((doc) => (
-              <Link key={doc.title} href={doc.media} target="_blank">
-                <li className="text-primary-500 text-lg">{doc.title}</li>
-              </Link>
-            ))}
+{if (const isAdmin = getUserType(session.user.roles) === "admin") {
+    // Render all documents for admin
+    servicefalse[0].salesDocs.map((doc) => (
+        <Link key={doc.title} href={doc.media} target="_blank">
+            <li className="text-primary-500 text-lg">{doc.title}</li>
+        </Link>
+    ))
+} else if (const isDirectSales = getUserType(session.user.roles) === "direct-sales") {
+    // Render documents for reseller
+    servicefalse[0].salesDocs.filter(doc => doc.for === "Reseller").map((doc) => (
+        <Link key={doc.title} href={doc.media} target="_blank">
+            <li className="text-primary-500 text-lg">{doc.title}</li>
+        </Link>
+    ))
+} else {
+    // Render documents for direct sales employee
+    servicefalse[0].salesDocs.filter(doc => doc.for === "Direct Sales").map((doc) => (
+        <Link key={doc.title} href={doc.media} target="_blank">
+            <li className="text-primary-500 text-lg">{doc.title}</li>
+        </Link>
+    ))
+}}
                  
             </ul>
     </div>
