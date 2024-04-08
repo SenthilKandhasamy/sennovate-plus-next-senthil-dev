@@ -97,11 +97,13 @@ const groupings = [...new Set(allServices.map(service => service.grouping))];
 	<ul className="list-inside list-disc">
       {servicefalse[0].salesDocs
         .filter((doc) => {
-          if (doc.for === "reseller" && getUserType(session.user.roles) === "direct-sales") {
+          if (doc.for === "reseller" && getUserType(session.user.roles) === "user") {
             return true;
           } else if (doc.for === "directSales" && getUserType(session.user.roles) === "direct-sales") {
             return true;
           } else if (doc.for === "all") {
+            return true;
+          } else if (getUserType(session.user.roles) === "admin") {
             return true;
           }
           return false;
