@@ -1,6 +1,5 @@
 "use client";
-
-import { ServiceOffering } from "@/sennovate-main-api/service.type";
+import { ServiceOffering, ServiceOffering1 } from "@/sennovate-main-api/service.type";
 import {
   Table,
   TableBody,
@@ -12,7 +11,7 @@ import {
 } from "@nextui-org/react";
 
 interface Props {
-  offering: ServiceOffering;
+  offering: ServiceOffering | ServiceOffering1;
 }
 
 function renderPoint(point: any) {
@@ -21,6 +20,17 @@ function renderPoint(point: any) {
     offering: point.title,
     essential: <div className="text-center px-2">{point.essential}</div>,
     advance: <div className="text-center px-2">{point.advance}</div>,
+  };
+}
+
+function renderPoint2(point: any) {
+  return {
+    key: point.title,
+    offering: point.title,
+    onprem_essential: <div className="text-center px-2">{point.onprem_essential}</div>,
+    onprem_advance: <div className="text-center px-2">{point.onprem_advance}</div>,
+    cloud_essential: <div className="text-center px-2">{point.cloud_essential}</div>,
+    cloud_advance: <div className="text-center px-2">{point.cloud_advance}</div>,
   };
 }
 
@@ -40,10 +50,43 @@ export default function ServiceOfferingTable({ offering }: Props) {
       label: <div className="text-center">Advance</div>,
       width: "200px",
     },
+    {
+      key: "onprem_essential",
+      label: <div className="text-center">On-prem Essential</div>,
+      width: "200px",
+    },
+    {
+      key: "onprem_advance",
+      label: <div className="text-center">On-prem Advance</div>,
+      width: "200px",
+    },
+    {
+      key: "cloud_essential",
+      label: <div className="text-center">Cloud Essential</div>,
+      width: "200px",
+    },
+    {
+      key: "cloud_advance",
+      label: <div className="text-center">Cloud Advance</div>,
+      width: "200px",
+    },
   ];
 
-  const rows = (offering.points || []).reduce<any[]>((a, c) => {
-    a.push(renderPoint(c));
+  let points;
+  if (offering.has_points) {
+    points = offering.points;
+  } else if (offering.has_points_b) {
+    points = offering.points_b;
+  } else {
+    points = [];
+  }
+
+  const rows = points.reduce<any[]>((a, c) => {
+    if (offering.has_points_b) {
+      a.push(renderPoint2(c));
+    } else {
+      a.push(renderPoint(c));
+    }
     return a;
   }, []);
 
@@ -52,9 +95,14 @@ export default function ServiceOfferingTable({ offering }: Props) {
       key: c.heading,
       offering: <span className="text-primary-500">{c.heading}</span>,
     });
-    if (c.has_points) {
-      c.points?.forEach((p) => {
-        a.push(renderPoint(p));
+    if (c.has_points || c.has_points_b) {
+      const childPoints = c.has_points ? c.points : c.points_b;
+      childPoints?.forEach((p) => {
+        if (c.has_points_b) {
+          a.push(renderPoint2(p));
+        } else {
+          a.push(renderPoint(p));
+        }
       });
     }
     return a;
