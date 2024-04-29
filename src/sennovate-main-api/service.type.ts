@@ -16,8 +16,6 @@ export type ServicePoints = {
   description?: string;
   essential?: string;
   advance?: string;
-  on-prem_essential?: string;
-
 };
 
 export type ServiceOffering = {
