@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import { ServiceOffering} from "@/sennovate-main-api/service.type";
 import React from "react";
 import {
