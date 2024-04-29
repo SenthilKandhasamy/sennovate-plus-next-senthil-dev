@@ -18,6 +18,8 @@ export type ServicePoints = {
   advance?: string;
   onprem_essential?: string;
   onprem_advance?: string;
+  cloud_essential?: string;
+  cloud_advance?: string;
 };
 
 export type ServiceOffering = {
