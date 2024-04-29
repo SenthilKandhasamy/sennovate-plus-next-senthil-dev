@@ -25,8 +25,8 @@ export type ServiceOffering = {
   description: string;
   has_points: boolean;
   points?: ServicePoints[];
-  has_points_2: boolean;
-  points_2?: ServicePoints[];
+  has_points_b: boolean;
+  points_b?: ServicePoints[];
   children?: ServiceOffering[];
 };
 
