@@ -81,14 +81,14 @@ export default function ServiceOfferingTable({ offering }: Props) {
     points = [];
   }
 
-  const rows = offering.points.reduce<any[]>((a, c) => {
-    if (c.has_points_b) {
-      a.push(renderPoint2(c));
-    } else {
-      a.push(renderPoint(c));
-    }
-    return a;
-  }, []);
+const rows = (points || []).reduce<any[]>((a, c) => {
+  if (offering.has_points_b) {
+    a.push(renderPoint2(c));
+  } else {
+    a.push(renderPoint(c));
+  }
+  return a;
+}, []);
 
   (offering.children || []).reduce((a, c) => {
     a.push({
