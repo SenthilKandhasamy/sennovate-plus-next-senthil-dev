@@ -1,6 +1,6 @@
 import { getServerSession } from "@/auth";
 import BreadCrumbs from "@/components/breadcrumbs";
-import ServiceOfferingTable from "@/components/services/service-offering-table";
+import ServiceOfferingTable1 from "@/components/services/service-offering-table";
 import ServicePricing from "@/components/services/service-pricing";
 import ServiceSalesDocs from "@/components/services/servie-sales-docs";
 import { paths } from "@/paths";
@@ -66,7 +66,7 @@ export default async function Service({ params: { slug } }: Props) {
           return (
             <div key={table.heading} className="space-y-5">
               {table.offerings.map((offering) => (
-                <ServiceOfferingTable
+                <ServiceOfferingTable1
                   key={offering.heading}
                   offering={offering}
                 />
