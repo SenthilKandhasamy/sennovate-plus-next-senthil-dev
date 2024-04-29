@@ -1,6 +1,6 @@
 "use client";
 
-import { ServiceOffering1, ServiceOffering2 } from "@/sennovate-main-api/service.type";
+import { ServiceOffering } from "@/sennovate-main-api/service.type";
 import {
   Table,
   TableBody,
@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 
 interface Props {
-  offering: ServiceOffering1;
+  offering: ServiceOffering;
 }
 
 function renderPoint(point: any) {
@@ -24,7 +24,7 @@ function renderPoint(point: any) {
   };
 }
 
-export default function ServiceOfferingTable1({ offering }: Props) {
+export default function ServiceOfferingTable({ offering }: Props) {
   const columns = [
     {
       key: "offering",
