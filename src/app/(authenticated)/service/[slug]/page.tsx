@@ -65,7 +65,7 @@ export default async function Service({ params: { slug } }: Props) {
         {service.tables.map((table) => {
           return (
             <div key={table.heading} className="space-y-5">
-              {table.offerings.map((offering) => (
+              {table.offerings.map((offering: ServiceOffering1 | ServiceOffering2) => (
                 <ServiceOfferingTable1
                   key={offering.heading}
                   offering={offering}
