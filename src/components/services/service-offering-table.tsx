@@ -1,5 +1,6 @@
 "use client";
 import { ServiceOffering } from "@/sennovate-main-api/service.type";
+import React from "react";
 import {
   Table,
   TableBody,
@@ -7,7 +8,6 @@ import {
   TableColumn,
   TableHeader,
   TableRow,
-  getKeyValue,
 } from "@nextui-org/react";
 
 interface Props {
@@ -35,89 +35,19 @@ function renderPoint2(point: any) {
 }
 
 export default function ServiceOfferingTable({ offering }: Props) {
-  const columns = [
-    {
-      key: "offering",
-      label: offering.heading,
-    },
-    {
-      key: "essential",
-      label: <div className="text-center">Essential</div>,
-      width: "200px",
-    },
-    {
-      key: "advance",
-      label: <div className="text-center">Advance</div>,
-      width: "200px",
-    },
-    {
-      key: "onprem_essential",
-      label: <div className="text-center">On-prem Essential</div>,
-      width: "200px",
-    },
-    {
-      key: "onprem_advance",
-      label: <div className="text-center">On-prem Advance</div>,
-      width: "200px",
-    },
-    {
-      key: "cloud_essential",
-      label: <div className="text-center">Cloud Essential</div>,
-      width: "200px",
-    },
-    {
-      key: "cloud_advance",
-      label: <div className="text-center">Cloud Advance</div>,
-      width: "200px",
-    },
-  ];
-
-  let points;
   if (offering.has_points) {
-    points = offering.points;
-  } else if (offering.has_points_b) {
-    points = offering.points_b;
-  } else {
-    points = [];
-  }
+    const rows = offering.points?.map((point: any) => renderPoint(point)) || [];
+    const columns = [
+      { key: "offering", label: "Offering" },
+      { key: "essential", label: "Essential" },
+      { key: "advance", label: "Advance" },
+    ];
 
-const rows = (points || []).reduce<any[]>((a, c: any) => {
-  if (offering.has_points_b) {
-    a.push(renderPoint2(c));
-  } else {
-    a.push(renderPoint(c));
-  }
-  return a;
-}, []);
-
-  (offering.children || []).reduce((a, c) => {
-    a.push({
-      key: c.heading,
-      offering: <span className="text-primary-500">{c.heading}</span>,
-    });
-    if (c.has_points || c.has_points_b) {
-      const childPoints = c.has_points ? c.points : c.points_b;
-      childPoints?.forEach((p) => {
-        if (c.has_points_b) {
-          a.push(renderPoint2(p));
-        } else {
-          a.push(renderPoint(p));
-        }
-      });
-    }
-    return a;
-  }, rows);
-
-  return (
-    <div>
+    return (
       <Table>
         <TableHeader columns={columns}>
           {(column) => (
-            <TableColumn
-              key={column.key}
-              width={column.width as any}
-              className="text-medium"
-            >
+            <TableColumn key={column.key} className="text-medium">
               {column.label}
             </TableColumn>
           )}
@@ -125,13 +55,47 @@ const rows = (points || []).reduce<any[]>((a, c: any) => {
         <TableBody items={rows}>
           {(item) => (
             <TableRow key={item.key}>
-              {(columnKey) => (
-                <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-              )}
+              <TableCell>{item.offering}</TableCell>
+              <TableCell>{item.essential}</TableCell>
+              <TableCell>{item.advance}</TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
-    </div>
-  );
+    );
+  } else if (offering.has_points_b) {
+    const rows = offering.points_b?.map((point: any) => renderPoint2(point)) || [];
+    const columns = [
+      { key: "offering", label: "Offering" },
+      { key: "onprem_essential", label: "On-Prem Essential" },
+      { key: "onprem_advance", label: "On-Prem Advance" },
+      { key: "cloud_essential", label: "Cloud Essential" },
+      { key: "cloud_advance", label: "Cloud Advance" },
+    ];
+
+    return (
+      <Table>
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn key={column.key} className="text-medium">
+              {column.label}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={rows}>
+          {(item) => (
+            <TableRow key={item.key}>
+              <TableCell>{item.offering}</TableCell>
+              <TableCell>{item.onprem_essential}</TableCell>
+              <TableCell>{item.onprem_advance}</TableCell>
+              <TableCell>{item.cloud_essential}</TableCell>
+              <TableCell>{item.cloud_advance}</TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    );
+  } else {
+    return null; // Return null if neither has_points nor has_points_b is true
+  }
 }
