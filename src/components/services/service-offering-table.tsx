@@ -1,5 +1,5 @@
 "use client";
-import { ServiceOffering } from "@/sennovate-main-api/service.type";
+import { ServiceOffering, ServiceOffering1 } from "@/sennovate-main-api/service.type";
 import React from "react";
 import {
   Table,
@@ -11,7 +11,7 @@ import {
 } from "@nextui-org/react";
 
 interface Props {
-  offering: ServiceOffering;
+  offering: ServiceOffering | ServiceOffering1;
 }
 
 function renderPoint(point: any) {
