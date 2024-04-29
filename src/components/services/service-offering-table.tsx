@@ -54,10 +54,10 @@ export default function ServiceOffering1({ offering }: Props) {
       offering: <span className="text-primary-500">{c.heading}</span>,
     });
     if (c.has_points) {
-      c.points?.forEach((p) => {
-        a.push(renderPoint(p));
+      c.points?.forEach((p: ServicePoints1) => { // Assuming ServicePoints1 is the correct type
+      a.push(renderPoint(p));
       });
-    }
+  }
     return a;
   }, rows);
 
