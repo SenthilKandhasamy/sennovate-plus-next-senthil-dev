@@ -18,13 +18,28 @@ export type ServicePoints = {
   advance?: string;
 };
 
+export type ServicePoints1 = {
+  title: string;
+  description?: string;
+  onprem_essential?: string;
+  onprem_advance?: string;
+  cloud_essential?: string;
+  cloud_advance?: string;
+};
+
 export type ServiceOffering = {
   heading: string;
   description: string;
   has_points: boolean;
   points?: ServicePoints[];
-  has_points_2: boolean;
-  points_2?: ServicePoints[];
+  children?: ServiceOffering[];
+};
+
+export type ServiceOffering1 = {
+  heading: string;
+  description: string;
+  has_points_b: boolean;
+  points_b?: ServicePoints[];
   children?: ServiceOffering[];
 };
 
