@@ -1,7 +1,7 @@
 "use client";
 
-// import { ServiceOffering } from "@/sennovate-main-api/service.type";
 import { ServiceOfferingTable1, ServiceOfferingTable2 } from '@/components/services/service-offering-table';
+
 import {
   Table,
   TableBody,
@@ -97,7 +97,7 @@ function renderPoint2(point: any) {
     offering: point.title,
     onprem_essential: <div className="text-center px-2">{point.onprem_essential}</div>,
     onprem_advance: <div className="text-center px-2">{point.onprem_advance}</div>,
-	cloud_essential: <div className="text-center px-2">{point.cloud_essential}</div>,
+    cloud_essential: <div className="text-center px-2">{point.cloud_essential}</div>,
     cloud_advance: <div className="text-center px-2">{point.cloud_advance}</div>,
   };
 }
