@@ -1,6 +1,7 @@
 "use client";
 
-import { ServiceOffering } from "@/sennovate-main-api/service.type";
+import { ServiceOffering1, ServiceOffering2 } from "@/sennovate-main-api/service.type";
+
 import {
   Table,
   TableBody,
