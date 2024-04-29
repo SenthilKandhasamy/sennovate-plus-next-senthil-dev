@@ -38,7 +38,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
   if (offering.has_points) {
     const rows = offering.points?.map((point: any) => renderPoint(point)) || [];
     const columns = [
-      { key: "offering", label: "Offering" },
+      { key: offering: point.title, label: "Offering" },
       { key: "essential", label: "Essential" },
       { key: "advance", label: "Advance" },
     ];
