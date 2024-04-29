@@ -6,7 +6,7 @@ type WordpressACFTable = {
   caption: boolean;
   body: {
     c: string;
-  }[][];
+  }[][][][][][];
 };
 
 export type UserType = "reseller" | "directSales";
