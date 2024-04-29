@@ -38,6 +38,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
   if (offering.has_points) {
     const rows = offering.points?.map((point: any) => renderPoint(point)) || [];
     const columns = [
+      { key: point.title},
       { offering: point.title},
       { key: "essential", label: "Essential" },
       { key: "advance", label: "Advance" },
@@ -66,6 +67,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
   } else if (offering.has_points_b) {
     const rows = offering.points_b?.map((point: any) => renderPoint2(point)) || [];
     const columns = [
+      { key: point.title},
       { offering: point.title},
       { key: "onprem_essential", label: "On-Prem Essential" },
       { key: "onprem_advance", label: "On-Prem Advance" },
