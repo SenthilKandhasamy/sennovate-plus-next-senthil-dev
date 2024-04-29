@@ -1,6 +1,8 @@
 import { getServerSession } from "@/auth";
 import BreadCrumbs from "@/components/breadcrumbs";
 import ServiceOfferingTable1 from "@/components/services/service-offering-table";
+import ServiceOffering1 from "@/components/services/service-offering-table";
+
 import ServicePricing from "@/components/services/service-pricing";
 import ServiceSalesDocs from "@/components/services/servie-sales-docs";
 import { paths } from "@/paths";
