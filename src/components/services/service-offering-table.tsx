@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 
 interface Props {
-  offering: ServiceOffering;
+  offering: ServiceOffering1;
 }
 
 function renderPoint(point: any) {
