@@ -73,7 +73,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
   ];
 
   let points;
-  if (c.has_points) {
+  if (offering.has_points) {
     points = offering.points;
   } else if (c.has_points_b) {
     points = offering.points_b;
