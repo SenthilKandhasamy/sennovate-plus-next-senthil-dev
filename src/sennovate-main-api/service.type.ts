@@ -23,6 +23,8 @@ export type ServiceOffering = {
   description: string;
   has_points: boolean;
   points?: ServicePoints[];
+  has_points_2: boolean;
+  points_2?: ServicePoints[];
   children?: ServiceOffering[];
 };
 
@@ -59,6 +61,7 @@ export type ByoLogo = {
 
 export type Service = {
   title: string;
+  grouping: string;
   slug: string;
   excerpt: string;
   tables: ServiceTable[];
@@ -70,4 +73,11 @@ export type Service = {
     for: UserType;
     table: WordpressACFTable;
   }[];
+};
+export type Servicefalse = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  flag : boolean;
+  salesDocs: SalesDoc[];
 };
