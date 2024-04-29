@@ -1,5 +1,5 @@
 "use client";
-import { ServiceOffering, ServiceOffering1 } from "@/sennovate-main-api/service.type";
+import { ServiceOffering } from "@/sennovate-main-api/service.type";
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
 } from "@nextui-org/react";
 
 interface Props {
-  offering: ServiceOffering | ServiceOffering1;
+  offering: ServiceOffering;
 }
 
 function renderPoint(point: any) {
@@ -73,7 +73,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
   ];
 
   let points;
-  if (offering.has_points) {
+  if (c.has_points) {
     points = offering.points;
   } else if (c.has_points_b) {
     points = offering.points_b;
