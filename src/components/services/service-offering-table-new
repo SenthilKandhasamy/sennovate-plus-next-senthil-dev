@@ -15,47 +15,35 @@ interface Props {
   offering: ServiceOffering;
 }
 
-function renderPoint2(point: any) {
+function renderPoint(point: any) {
   return {
     key: point.title,
     offering: point.title,
-    on-prem_essential: <div className="text-center px-2">{point.on-prem_essential}</div>,
-    on-prem_advance: <div className="text-center px-2">{point.on-prem_advance}</div>,
-	cloud_essential: <div className="text-center px-2">{point.cloud_essential}</div>,
-    cloud_advance: <div className="text-center px-2">{point.cloud_advance}</div>,
+    essential: <div className="text-center px-2">{point.essential}</div>,
+    advance: <div className="text-center px-2">{point.advance}</div>,
   };
 }
 
-export default function ServiceOfferingTable2({ offering }: Props) {
+export default function ServiceOfferingTable({ offering }: Props) {
   const columns = [
     {
       key: "offering",
       label: offering.heading,
     },
     {
-      key: "on-prem_essential",
-      label: <div className="text-center">On-prem Essential</div>,
+      key: "essential",
+      label: <div className="text-center">Essential</div>,
       width: "200px",
     },
     {
-      key: "on-prem_advance",
-      label: <div className="text-center">On-prem Advance</div>,
-      width: "200px",
-    },
-	    {
-      key: "cloud_essential",
-      label: <div className="text-center">Cloud Essential</div>,
-      width: "200px",
-    },
-    {
-      key: "cloud_advance",
-      label: <div className="text-center">Cloud Advance</div>,
+      key: "advance",
+      label: <div className="text-center">Advance</div>,
       width: "200px",
     },
   ];
 
-  const rows = (offering.points_2 || []).reduce<any[]>((a, c) => {
-    a.push(renderPoint2(c));
+  const rows = (offering.points || []).reduce<any[]>((a, c) => {
+    a.push(renderPoint(c));
     return a;
   }, []);
 
@@ -64,9 +52,9 @@ export default function ServiceOfferingTable2({ offering }: Props) {
       key: c.heading,
       offering: <span className="text-primary-500">{c.heading}</span>,
     });
-    if (c.has_points_2) {
-      c.points_2?.forEach((p) => {
-        a.push(renderPoint2(p));
+    if (c.has_points) {
+      c.points?.forEach((p) => {
+        a.push(renderPoint(p));
       });
     }
     return a;
