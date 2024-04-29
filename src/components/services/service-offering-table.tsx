@@ -25,7 +25,7 @@ function renderPoint(point: any) {
   };
 }
 
-export default function ServiceOfferingTable({ offering }: Props) {
+export default function ServiceOffering1({ offering }: Props) {
   const columns = [
     {
       key: "offering",
