@@ -11,50 +11,26 @@ type WordpressACFTable = {
 
 export type UserType = "reseller" | "directSales";
 
-export type ServicePoints1 = {
+export type ServicePoints = {
   title: string;
   description?: string;
   essential?: string;
   advance?: string;
 };
 
-export type ServicePoints2 = {
-  title: string;
-  description?: string;
-  onprem_essential?: string;
-  onprem_advance?: string;
-  cloud_essential?: string;
-  cloud_advance?: string;
-};
-
-export type ServiceOffering1 = {
+export type ServiceOffering = {
   heading: string;
   description: string;
   has_points: boolean;
-  points?: ServicePoints1[];
-  children?: ServiceOffering1[];
+  points?: ServicePoints[];
+  children?: ServiceOffering[];
 };
 
-export type ServiceOffering2 = {
-  heading: string;
-  description: string;
-  has_points_b: boolean;
-  points_b?: ServicePoints2[];
-  children?: ServiceOffering2[];
-};
-
-export type ServiceTable1 = {
+export type ServiceTable = {
   heading: string;
   subHeading?: string;
-  offerings: ServiceOffering1[];
+  offerings: ServiceOffering[];
 };
-
-export type ServiceTable2 = {
-  heading: string;
-  subHeading?: string;
-  offerings: ServiceOffering2[];
-};
-
 export type Pricing = {
   name: string;
   description: string;
@@ -83,7 +59,6 @@ export type ByoLogo = {
 
 export type Service = {
   title: string;
-  grouping: string;
   slug: string;
   excerpt: string;
   tables: ServiceTable[];
@@ -95,11 +70,4 @@ export type Service = {
     for: UserType;
     table: WordpressACFTable;
   }[];
-};
-export type Servicefalse = {
-  title: string;
-  slug: string;
-  excerpt: string;
-  flag : boolean;
-  salesDocs: SalesDoc[];
 };
