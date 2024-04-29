@@ -11,22 +11,33 @@ type WordpressACFTable = {
 
 export type UserType = "reseller" | "directSales";
 
-export type ServicePoints = {
+export type ServicePoints1 = {
   title: string;
   description?: string;
   essential?: string;
   advance?: string;
+};
+
+export type ServicePoints2 = {
+  title: string;
+  description?: string;
   onprem_essential?: string;
   onprem_advance?: string;
   cloud_essential?: string;
   cloud_advance?: string;
 };
 
-export type ServiceOffering = {
+export type ServiceOffering1 = {
   heading: string;
   description: string;
   has_points: boolean;
   points?: ServicePoints[];
+  children?: ServiceOffering[];
+};
+
+export type ServiceOffering2 = {
+  heading: string;
+  description: string;
   has_points_b: boolean;
   points_b?: ServicePoints[];
   children?: ServiceOffering[];
