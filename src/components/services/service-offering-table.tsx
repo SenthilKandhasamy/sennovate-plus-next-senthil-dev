@@ -41,7 +41,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
       { key: "offering", label: "Offering" },
       { key: "essential", label: "Essential" },
       { key: "advance", label: "Advance" },
-       { key: "advance", label: "Advance" },
+      { key: "cloud_advance", label: "Cloud Advance" },
     ];
 
     return (
@@ -59,7 +59,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
               <TableCell>{item.offering}</TableCell>
               <TableCell>{item.essential}</TableCell>
               <TableCell>{item.advance}</TableCell>
-              <TableCell>{item.advance}</TableCell>
+              <TableCell>{item.cloud_advance}</TableCell>
             </TableRow>
           )}
         </TableBody>
