@@ -35,9 +35,37 @@ function renderPoint2(point: any) {
 }
 
 export default function ServiceOfferingTable({ offering }: Props) {
-if (offering.has_points_b) {
+  if (offering.has_points) {
+    const rows = offering.points?.map((point: any) => renderPoint(point)) || [];
+    const columns = [
+      { key: "offering", label: "Offering" },
+      { key: "essential", label: "Essential" },
+      { key: "advance", label: "Advance" },
+    ];
+
+    return (
+      <Table>
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn key={column.key} className="text-medium">
+              {column.label}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={rows}>
+          {(item) => (
+            <TableRow key={item.key}>
+              <TableCell>{item.offering}</TableCell>
+              <TableCell>{item.essential}</TableCell>
+              <TableCell>{item.advance}</TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    );
+  } else if (offering.has_points_b) {
     const rows = offering.points_b?.map((point: any) => renderPoint2(point)) || [];
-    const columns = [      
+    const columns = [
       { key: "offering", label: "Offering" },
       { key: "onprem_essential", label: "On-Prem Essential" },
       { key: "onprem_advance", label: "On-Prem Advance" },
@@ -62,34 +90,6 @@ if (offering.has_points_b) {
               <TableCell>{item.onprem_advance}</TableCell>
               <TableCell>{item.cloud_essential}</TableCell>
               <TableCell>{item.cloud_advance}</TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    );
-  } else if (offering.has_points) {
-    const rows = offering.points?.map((point: any) => renderPoint(point)) || [];
-    const columns = [
-      { key: "offering", label: "Offering" },
-      { key: "essential", label: "Essential" },
-      { key: "advance", label: "Advance" },
-    ];
-
-    return (
-      <Table>
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn key={column.key} className="text-medium">
-              {column.label}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody items={rows}>
-          {(item) => (
-            <TableRow key={item.key}>
-              <TableCell>{item.offering}</TableCell>
-              <TableCell>{item.essential}</TableCell>
-              <TableCell>{item.advance}</TableCell>
             </TableRow>
           )}
         </TableBody>
