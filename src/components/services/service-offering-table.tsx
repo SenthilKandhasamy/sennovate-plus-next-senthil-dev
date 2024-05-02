@@ -41,6 +41,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
       { key: "offering", label: "Offering" },
       { key: "essential", label: "Essential" },
       { key: "advance", label: "Advance" },
+       { key: "advance", label: "Advance" },
     ];
 
     return (
