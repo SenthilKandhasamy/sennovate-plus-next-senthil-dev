@@ -59,6 +59,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
               <TableCell>{item.offering}</TableCell>
               <TableCell>{item.essential}</TableCell>
               <TableCell>{item.advance}</TableCell>
+              <TableCell>{item.advance}</TableCell>
             </TableRow>
           )}
         </TableBody>
