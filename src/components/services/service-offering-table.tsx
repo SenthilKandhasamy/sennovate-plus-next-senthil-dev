@@ -23,14 +23,14 @@ function renderPoint(point: any) {
   };
 }
 
-function renderPoint2(point: any) {
+function renderPoint2(point2: any) {
   return {
-    key: point.title,
-    offering: point.title,
-    onprem_essential: <div className="text-center px-2">{point.onprem_essential}</div>,
-    onprem_advance: <div className="text-center px-2">{point.onprem_advance}</div>,
-    cloud_essential: <div className="text-center px-2">{point.cloud_essential}</div>,
-    cloud_advance: <div className="text-center px-2">{point.cloud_advance}</div>,
+    key: point2.title,
+    offering: point2.title,
+    onprem_essential: <div className="text-center px-2">{point2.onprem_essential}</div>,
+    onprem_advance: <div className="text-center px-2">{point2.onprem_advance}</div>,
+    cloud_essential: <div className="text-center px-2">{point2.cloud_essential}</div>,
+    cloud_advance: <div className="text-center px-2">{point2.cloud_advance}</div>,
   };
 }
 
@@ -64,7 +64,7 @@ export default function ServiceOfferingTable({ offering }: Props) {
       </Table>
     );
   } else if (offering.has_points_b) {
-    const rows = offering.points_b?.map((point: any) => renderPoint2(point)) || [];
+    const rows = offering.points_b?.map((point2: any) => renderPoint2(point2)) || [];
     const columns = [
       { key: "offering", label: "Offering" },
       { key: "onprem_essential", label: "On-Prem Essential" },
