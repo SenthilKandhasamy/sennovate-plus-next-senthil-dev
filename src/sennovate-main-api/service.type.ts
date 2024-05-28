@@ -9,7 +9,7 @@ type WordpressACFTable = {
   }[][];
 };
 
-export type UserType = "reseller" | "directSales" | "employee";
+export type UserType = "reseller" | "directSales";
 
 
 export type ServicePoints = {
